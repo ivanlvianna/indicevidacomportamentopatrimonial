@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Índice VIDA de Comportamento Patrimonial · Ivan Vianna CFP®</title>
+<meta name="description" content="Uma sessão individual para mapear os padrões comportamentais que estão interferindo nas suas decisões patrimoniais. Ivan Vianna CFP®. R$ 997.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:#1A3C2E;--verde-mid:#2E5C46;--ouro:#C9A84C;--ouro-claro:#E8CC82;
+  --ouro-escuro:#8B6914;--creme:#F5F0E8;--creme-mid:#EDE6D6;
+  --texto:#1A1A1A;--texto-soft:#5A5050;--branco:#FFFFFF;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cormorant Garamond',Georgia,serif;background:var(--creme);color:var(--texto);overflow-x:hidden;}
+
+/* ── HERO ── */
+.hero{background:var(--verde);padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.08) 0%,transparent 60%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--ouro),transparent);}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--ouro);margin-bottom:1.5rem;}
+.hero-titulo{font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.15;color:var(--branco);max-width:760px;margin:0 auto 1rem;}
+.hero-titulo strong{font-weight:600;color:var(--ouro-claro);}
+.hero-sub{font-size:clamp(1.1rem,2.5vw,1.35rem);font-weight:300;font-style:italic;color:rgba(255,255,255,0.65);max-width:600px;margin:0 auto 2.5rem;line-height:1.65;}
+.hero-btn{display:inline-block;background:linear-gradient(135deg,var(--ouro-claro),var(--ouro));color:var(--verde);font-family:'DM Mono',monospace;font-size:0.9rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:16px 40px;text-decoration:none;transition:opacity 0.2s,transform 0.15s;margin-bottom:1rem;}
+.hero-btn:hover{opacity:0.9;transform:translateY(-2px);}
+.hero-preco{font-family:'DM Mono',monospace;font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:1px;}
+
+/* ── WRAP ── */
+.wrap{max-width:760px;margin:0 auto;padding:0 2rem;}
+
+/* ── SEÇÕES ── */
+.secao{padding:4rem 0;border-bottom:1px solid var(--creme-mid);}
+.secao:last-of-type{border-bottom:none;}
+.secao-eyebrow{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem;}
+.secao-titulo{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:300;line-height:1.2;color:var(--texto);margin-bottom:1.5rem;}
+.secao-titulo strong{font-weight:600;}
+.secao-texto{font-size:1.15rem;line-height:1.85;color:var(--texto-soft);margin-bottom:1rem;}
+.secao-texto strong{color:var(--texto);font-weight:600;}
+
+/* ── PROBLEMA ── */
+.problema-itens{display:flex;flex-direction:column;gap:1px;margin-top:2rem;}
+.problema-item{background:var(--branco);border-left:2px solid var(--ouro);padding:1.25rem 1.5rem;}
+.problema-item p{font-size:1.1rem;line-height:1.7;color:var(--texto-soft);font-style:italic;}
+
+/* ── O QUE É ── */
+.oque-card{background:var(--verde);padding:2.5rem;margin-top:2rem;position:relative;}
+.oque-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ouro),transparent);}
+.oque-card p{font-size:1.15rem;line-height:1.85;color:rgba(255,255,255,0.8);}
+.oque-card strong{color:var(--ouro-claro);}
+
+/* ── PARA QUEM ── */
+.para-quem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:2rem;}
+.para-quem-item{background:var(--branco);padding:1.5rem;text-align:center;}
+.para-quem-item .icone{font-size:1.5rem;margin-bottom:0.75rem;}
+.para-quem-item h3{font-size:1.1rem;font-weight:600;color:var(--texto);margin-bottom:0.4rem;}
+.para-quem-item p{font-size:0.95rem;color:var(--texto-soft);line-height:1.6;}
+
+/* ── INCLUI ── */
+.inclui-itens{display:flex;flex-direction:column;gap:1px;margin-top:2rem;}
+.inclui-item{background:var(--branco);padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;}
+.inclui-num{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ouro);letter-spacing:1px;min-width:24px;margin-top:4px;}
+.inclui-texto h3{font-size:1.1rem;font-weight:600;color:var(--texto);margin-bottom:0.3rem;}
+.inclui-texto p{font-size:1rem;color:var(--texto-soft);line-height:1.65;}
+
+/* ── CREDITO ── */
+.credito{background:var(--branco);border:1px solid var(--creme-mid);border-left:3px solid var(--ouro);padding:1.75rem;margin-top:2rem;}
+.credito p{font-size:1.1rem;line-height:1.75;color:var(--texto-soft);font-style:italic;}
+.credito strong{color:var(--texto);font-style:normal;}
+
+/* ── DEPOIMENTO placeholder ── */
+.frase-ancora{text-align:center;padding:3rem 0;}
+.frase-ancora blockquote{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:300;font-style:italic;line-height:1.4;color:var(--texto);max-width:620px;margin:0 auto 1rem;position:relative;}
+.frase-ancora blockquote::before{content:'\201C';font-size:4rem;color:var(--ouro);line-height:0;position:absolute;top:1.2rem;left:-2rem;opacity:0.4;}
+.frase-ancora cite{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ouro);}
+
+/* ── CTA FINAL ── */
+.cta-final{background:var(--verde);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(201,168,76,0.06) 0%,transparent 60%);pointer-events:none;}
+.cta-final-eyebrow{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem;}
+.cta-final-titulo{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:300;color:var(--branco);line-height:1.2;max-width:600px;margin:0 auto 0.75rem;}
+.cta-final-titulo strong{font-weight:600;color:var(--ouro-claro);}
+.cta-final-sub{font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.55);margin-bottom:2rem;line-height:1.6;}
+.cta-final-preco{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--ouro);letter-spacing:1px;margin-bottom:1.5rem;}
+.cta-final-preco span{font-size:1.6rem;font-weight:500;}
+.cta-final-btn{display:inline-block;background:linear-gradient(135deg,var(--ouro-claro),var(--ouro));color:var(--verde);font-family:'DM Mono',monospace;font-size:0.9rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:18px 48px;text-decoration:none;transition:opacity 0.2s,transform 0.15s;margin-bottom:1rem;}
+.cta-final-btn:hover{opacity:0.9;transform:translateY(-2px);}
+.cta-final-garantia{font-family:'DM Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.3);letter-spacing:1px;margin-top:0.5rem;}
+.cta-final-credito{font-size:0.95rem;font-style:italic;color:rgba(255,255,255,0.45);margin-top:1rem;}
+
+/* ── SCANNER CTA ── */
+.scanner-cta{background:var(--creme-mid);padding:2.5rem;text-align:center;border-top:1px solid var(--creme-mid);}
+.scanner-cta p{font-size:1rem;color:var(--texto-soft);margin-bottom:0.75rem;}
+.scanner-cta a{font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:1px;color:var(--verde);text-decoration:none;border-bottom:1px solid var(--ouro);padding-bottom:2px;}
+
+/* ── RODAPÉ ── */
+.rodape{background:var(--verde);padding:2rem;text-align:center;}
+.rodape p{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;color:rgba(255,255,255,0.3);line-height:1.8;}
+.rodape a{color:rgba(255,255,255,0.4);text-decoration:none;}
+
+@media(max-width:600px){
+  .para-quem-grid{grid-template-columns:1fr;}
+  .hero{padding:3.5rem 1.5rem 3rem;}
+  .frase-ancora blockquote::before{left:-0.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Método VIDA · Ivan Vianna CFP® · Sessão Individual</div>
+  <h1 class="hero-titulo">
+    Você já sabe que o problema<br>
+    <strong>não está só no mercado.</strong>
+  </h1>
+  <p class="hero-sub">O Índice VIDA de Comportamento Patrimonial mapeia os padrões invisíveis que estão interferindo nas suas decisões financeiras — e o que fazer a partir deles.</p>
+  <a href="https://pay.hotmart.com/N106150673F" class="hero-btn" target="_blank" rel="noopener">Quero o meu diagnóstico →</a>
+  <div class="hero-preco">Sessão individual · R$ 997</div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="secao">
+  <div class="wrap">
+    <div class="secao-eyebrow">O problema</div>
+    <h2 class="secao-titulo">Há um padrão operando nas suas decisões.<br><strong>Você provavelmente ainda não o viu.</strong></h2>
+    <p class="secao-texto">Pesquisas em behavioral finance mostram que padrões comportamentais respondem por mais de 60% da diferença de resultado entre investidores com o mesmo perfil de risco e o mesmo portfólio. A diferença não é técnica — é comportamental.</p>
+    <p class="secao-texto">O problema raramente é o que você faz. É <strong>o que te faz fazer o que faz</strong> — sem que você perceba.</p>
+    <div class="problema-itens">
+      <div class="problema-item"><p>Decisões que você adiou por mais tempo do que deveria — e que custaram mais do que você imagina.</p></div>
+      <div class="problema-item"><p>Gastos que acompanharam automaticamente cada aumento de renda, sem que você tenha decidido isso conscientemente.</p></div>
+      <div class="problema-item"><p>A sensação persistente de que poderia estar muito melhor do que está — com a mesma renda, o mesmo conhecimento.</p></div>
+      <div class="problema-item"><p>Conquistas que não duraram. Metas que foram atingidas e logo perdidas por decisões que, semanas depois, você mesmo não conseguia explicar.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE É -->
+<section class="secao">
+  <div class="wrap">
+    <div class="secao-eyebrow">O que é</div>
+    <h2 class="secao-titulo">Não é uma consultoria de investimentos.<br><strong>É um mapa do que está operando em você.</strong></h2>
+    <p class="secao-texto">O Índice VIDA de Comportamento Patrimonial é uma sessão individual conduzida por Ivan Vianna, CFP®, com foco exclusivo no seu perfil de decisão financeira.</p>
+    <div class="oque-card">
+      <p>Durante a sessão, mapeamos os fenômenos comportamentais ativos no seu perfil — paralisia decisória, identidade atrelada ao patrimônio, sabotagem de conquistas, dependência de padrão de vida — e identificamos onde cada um deles está custando mais no seu caso específico.</p>
+      <br>
+      <p>Ao final, você sai com um <strong>mapa claro</strong> do que está interferindo nas suas decisões — e com um direcionamento concreto para o próximo passo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section class="secao">
+  <div class="wrap">
+    <div class="secao-eyebrow">Para quem é</div>
+    <h2 class="secao-titulo">Para quem já chegou longe<br><strong>e sente que poderia ir mais longe.</strong></h2>
+    <p class="secao-texto">O Índice VIDA é para profissionais de alta renda que percebem que algo está interferindo nas suas decisões financeiras — mas não conseguem identificar exatamente o quê.</p>
+    <div class="para-quem-grid">
+      <div class="para-quem-item">
+        <div class="icone">⚕</div>
+        <h3>Médicos</h3>
+        <p>Alta renda, pouco tempo, decisões financeiras frequentemente tomadas sob pressão ou delegadas sem critério claro.</p>
+      </div>
+      <div class="para-quem-item">
+        <div class="icone">⚖</div>
+        <h3>Advogados</h3>
+        <p>Raciocínio analítico forte — mas padrões emocionais que operam nas decisões patrimoniais sem que o racional perceba.</p>
+      </div>
+      <div class="para-quem-item">
+        <div class="icone">◈</div>
+        <h3>Executivos</h3>
+        <p>Competência técnica reconhecida no trabalho. Decisões financeiras pessoais que não acompanham esse mesmo rigor.</p>
+      </div>
+      <div class="para-quem-item">
+        <div class="icone">◎</div>
+        <h3>Empresários</h3>
+        <p>Patrimônio construído com esforço. Sensação de que poderia crescer mais rápido — se não houvesse algo travando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE INCLUI -->
+<section class="secao">
+  <div class="wrap">
+    <div class="secao-eyebrow">O que inclui</div>
+    <h2 class="secao-titulo"><strong>Uma sessão.</strong><br>Um mapa. Uma direção.</h2>
+    <div class="inclui-itens">
+      <div class="inclui-item">
+        <div class="inclui-num">01</div>
+        <div class="inclui-texto">
+          <h3>Sessão individual de 90 minutos</h3>
+          <p>Conduzida por Ivan Vianna, CFP®, com foco exclusivo no seu perfil de comportamento patrimonial. Por videochamada, no horário que melhor se adaptar à sua agenda.</p>
+        </div>
+      </div>
+      <div class="inclui-item">
+        <div class="inclui-num">02</div>
+        <div class="inclui-texto">
+          <h3>Mapeamento comportamental personalizado</h3>
+          <p>Identificação dos padrões ativos no seu perfil — não um relatório genérico, mas uma leitura do seu caso específico, com base no que emerge durante a sessão.</p>
+        </div>
+      </div>
+      <div class="inclui-item">
+        <div class="inclui-num">03</div>
+        <div class="inclui-texto">
+          <h3>Direcionamento para o próximo passo</h3>
+          <p>Ao final, você recebe um plano claro do que fazer a partir do diagnóstico — seja uma reestruturação pontual ou o início do Planejamento VIDA completo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="credito">
+      <p><strong>Importante:</strong> quem decidir seguir para o Planejamento VIDA após o Índice tem o valor de R$ 997 integralmente descontado. O diagnóstico não é um custo — é o primeiro passo de um processo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FRASE ÂNCORA -->
+<div class="frase-ancora">
+  <div class="wrap">
+    <blockquote>A liberdade financeira não começa quando você acumula o suficiente. Ela começa quando você percebe quem está tomando as decisões.</blockquote>
+    <cite>Ivan Vianna · CFP®</cite>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-eyebrow">Índice VIDA de Comportamento Patrimonial</div>
+  <h2 class="cta-final-titulo">Há um padrão específico por trás das suas decisões.<br><strong>Este é o momento de identificá-lo.</strong></h2>
+  <p class="cta-final-sub">Sessão individual com Ivan Vianna, CFP® · 90 minutos · Por videochamada</p>
+  <div class="cta-final-preco">Investimento: <span>R$ 997</span></div>
+  <a href="https://pay.hotmart.com/N106150673F" class="cta-final-btn" target="_blank" rel="noopener">Quero o meu diagnóstico →</a>
+  <div class="cta-final-garantia">GARANTIA DE 7 DIAS · REEMBOLSO INTEGRAL SE NÃO HOUVER AGENDAMENTO</div>
+  <p class="cta-final-credito">Valor integralmente descontado no Planejamento VIDA.</p>
+</section>
+
+<!-- SCANNER CTA -->
+<div class="scanner-cta">
+  <p>Ainda não sabe qual é o seu perfil comportamental?</p>
+  <a href="https://ivanlvianna.github.io/indicevidacomportamentopatrimonial/" target="_blank">Faça primeiro o Índice VIDA gratuito — 7 perguntas, 90 segundos →</a>
+</div>
+
+<!-- RODAPÉ -->
+<footer class="rodape">
+  <p>
+    Ivan Vianna · CFP® · CNPJ 56.099.913/0001-61<br>
+    <a href="https://ivanviannafinancas.com.br">ivanviannafinancas.com.br</a> · <a href="https://www.linkedin.com/in/ivanlvianna/">linkedin.com/in/ivanlvianna</a>
+  </p>
+</footer>
+
+</body>
+</html>
