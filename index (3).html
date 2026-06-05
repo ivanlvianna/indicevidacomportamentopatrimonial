@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Índice VIDA de Comportamento Patrimonial · Ivan Vianna CFP®</title>
+<meta name="description" content="Em 7 perguntas, descubra qual padrão comportamental está operando nas suas decisões financeiras. Gratuito. Método VIDA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:       #1A3C2E;
+  --verde-mid:   #2E5C46;
+  --ouro:        #C9A84C;
+  --ouro-claro:  #E8CC82;
+  --ouro-escuro: #8B6914;
+  --creme:       #F5F0E8;
+  --creme-mid:   #EDE6D6;
+  --texto:       #1A1A1A;
+  --texto-soft:  #5A5050;
+  --branco:      #FFFFFF;
+  --erro:        #8B2A1A;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--creme);
+  color: var(--texto);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fundo texturizado */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(26,60,46,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 90%, rgba(201,168,76,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative; z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--verde);
+  margin: 0 -1.5rem;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::after {
+  content: '';
+  position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+.header-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--ouro);
+  margin-bottom: 1.2rem;
+}
+.header-titulo {
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 300; line-height: 1.2;
+  color: var(--branco);
+  margin-bottom: 0.5rem;
+}
+.header-titulo strong {
+  font-weight: 600; color: var(--ouro-claro);
+  display: block;
+}
+.header-sub {
+  font-size: 0.95rem; font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  font-style: italic; line-height: 1.6;
+  max-width: 480px; margin: 1rem auto 1.5rem;
+}
+.header-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center;
+}
+.header-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(201,168,76,0.3);
+  color: rgba(232,204,130,0.7);
+  padding: 3px 10px; border-radius: 1px;
+}
+
+/* ── INTRO ── */
+.intro {
+  text-align: center;
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px solid var(--creme-mid);
+  margin-bottom: 2rem;
+}
+.intro-alerta {
+  background: var(--branco);
+  border-left: 2px solid var(--ouro);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.intro-alerta p {
+  font-size: 0.875rem; line-height: 1.7;
+  color: var(--texto-soft); font-style: italic;
+}
+.intro p {
+  font-size: 1.05rem; line-height: 1.75;
+  color: var(--texto-soft);
+}
+.intro strong { color: var(--texto); font-weight: 600; }
+
+/* ── PROGRESSO ── */
+.progresso {
+  margin-bottom: 2rem;
+}
+.progresso-track {
+  height: 2px; background: var(--creme-mid);
+  border-radius: 1px; overflow: hidden;
+}
+.progresso-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--verde), var(--ouro));
+  border-radius: 1px;
+  transition: width 0.5s ease;
+  width: 0%;
+}
+.progresso-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; letter-spacing: 1px;
+  color: var(--texto-soft);
+  margin-top: 6px;
+}
+
+/* ── PERGUNTAS ── */
+.pergunta {
+  background: var(--branco);
+  border: 1px solid var(--creme-mid);
+  padding: 1.75rem;
+  margin-bottom: 1rem;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s;
+}
+.pergunta.visivel { opacity: 1; transform: translateY(0); }
+.pergunta.respondida { border-left: 2px solid var(--ouro); }
+
+.p-numero {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--ouro);
+  margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.p-numero::after {
+  content: ''; flex: 1; height: 1px; background: var(--creme-mid);
+}
+.p-texto {
+  font-size: 1.1rem; line-height: 1.55;
+  color: var(--texto); margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.opcoes { display: flex; flex-direction: column; gap: 7px; }
+.opcao {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 14px;
+  background: var(--creme);
+  border: 1px solid var(--creme-mid);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left; width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem; line-height: 1.5;
+  color: var(--texto);
+}
+.opcao:hover {
+  background: var(--branco);
+  border-color: var(--ouro-escuro);
+}
+.opcao.selecionada {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: var(--branco);
+}
+.opcao.selecionada .opcao-letra { color: var(--ouro-claro); }
+.opcao-letra {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem; font-weight: 500;
+  color: var(--ouro); min-width: 14px;
+  margin-top: 2px; flex-shrink: 0;
+}
+
+.btn-avancar {
+  display: block; margin: 2rem auto;
+  background: var(--verde);
+  color: var(--ouro-claro);
+  border: none; padding: 14px 48px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem; letter-spacing: 2px;
+  text-transform: uppercase; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.btn-avancar:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+.btn-avancar:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-nota {
+  text-align: center; font-style: italic;
+  font-size: 0.8rem; color: var(--texto-soft);
+  margin-top: -1.5rem; margin-bottom: 2rem;
+}
+
+/* ── CAPTURA ── */
+.captura { display: none; }
+.captura-card {
+  background: var(--branco);
+  border: 1px solid var(--creme-mid);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+.captura-titulo {
+  font-size: 1.3rem; font-weight: 400;
+  color: var(--texto); margin-bottom: 0.35rem;
+}
+.captura-sub {
+  font-size: 0.9rem; color: var(--texto-soft);
+  font-style: italic; line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+.campo { margin-bottom: 1rem; }
+.campo-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--texto-soft);
+  display: block; margin-bottom: 5px;
+}
+.campo-input {
+  width: 100%; padding: 10px 12px;
+  border: 1px solid var(--creme-mid);
+  background: var(--creme);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem; color: var(--texto);
+  transition: border-color 0.15s;
+}
+.campo-input:focus { outline: none; border-color: var(--verde); background: var(--branco); }
+.campo-input.erro { border-color: var(--erro); }
+.campo-erro {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; color: var(--erro);
+  margin-top: 4px; display: none;
+}
+.campo-erro.visivel { display: block; }
+.btn-ver {
+  width: 100%; margin-top: 0.5rem;
+  background: var(--verde); color: var(--ouro-claro);
+  border: none; padding: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem; letter-spacing: 2px;
+  text-transform: uppercase; cursor: pointer;
+  transition: opacity 0.2s;
+}
+.btn-ver:hover { opacity: 0.88; }
+.privacidade {
+  font-size: 0.75rem; color: var(--texto-soft);
+  font-style: italic; text-align: center;
+  margin-top: 0.75rem;
+}
+
+/* ── RESULTADO ── */
+.resultado { display: none; margin-top: 2rem; }
+.resultado.visivel { display: block; }
+
+/* Escala visual */
+.escala {
+  background: var(--branco);
+  border: 1px solid var(--creme-mid);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1px;
+}
+.escala-titulo {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--ouro);
+  margin-bottom: 1.2rem;
+}
+.escala-itens { display: flex; flex-direction: column; gap: 8px; }
+.escala-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 1rem; color: var(--texto-soft);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--creme-mid);
+  transition: all 0.3s;
+}
+.escala-item:last-child { border-bottom: none; }
+.escala-item.ativo {
+  color: var(--texto);
+  font-weight: 600;
+}
+.escala-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 1.5px solid var(--creme-mid);
+  flex-shrink: 0; transition: all 0.3s;
+}
+.escala-item.ativo .escala-dot {
+  background: var(--ouro);
+  border-color: var(--ouro);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+}
+.escala-seta {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem; color: var(--ouro);
+  margin-left: auto; opacity: 0;
+  transition: opacity 0.3s;
+}
+.escala-item.ativo .escala-seta { opacity: 1; }
+
+/* Header do resultado */
+.res-header {
+  background: var(--verde);
+  padding: 2.5rem 1.75rem 2rem;
+  position: relative; overflow: hidden;
+}
+.res-header::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+.res-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--ouro);
+  margin-bottom: 0.6rem;
+}
+.res-perfil {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 300; color: var(--branco);
+  line-height: 1.1; margin-bottom: 0.5rem;
+}
+.res-perfil strong { color: var(--ouro-claro); font-weight: 600; }
+.res-tagline {
+  font-size: 0.95rem; font-style: italic;
+  color: rgba(255,255,255,0.6); line-height: 1.55;
+  max-width: 440px;
+}
+.res-barra-wrap {
+  margin-top: 1.5rem;
+}
+.res-barra-track {
+  height: 3px; background: rgba(255,255,255,0.12);
+  border-radius: 2px; overflow: hidden;
+}
+.res-barra-fill {
+  height: 100%; border-radius: 2px;
+  background: linear-gradient(90deg, var(--ouro), var(--ouro-claro));
+  transition: width 1s ease 0.4s; width: 0%;
+}
+.res-barra-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem; color: rgba(255,255,255,0.35);
+  margin-top: 6px;
+}
+
+/* Corpo do resultado */
+.res-corpo {
+  background: var(--branco);
+  border: 1px solid var(--creme-mid); border-top: none;
+  padding: 2rem 1.75rem;
+}
+.res-secao {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--texto-soft);
+  border-bottom: 1px solid var(--creme-mid);
+  padding-bottom: 6px; margin-bottom: 1rem;
+  margin-top: 1.75rem;
+}
+.res-secao:first-child { margin-top: 0; }
+
+.res-texto {
+  font-size: 1.02rem; line-height: 1.8;
+  color: var(--texto); margin-bottom: 0.75rem;
+}
+.res-texto + .res-texto { margin-top: 0; }
+
+/* CTA */
+.cta {
+  background: var(--verde);
+  padding: 1.75rem;
+  margin-top: 1.75rem;
+  position: relative; overflow: hidden;
+}
+.cta::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ouro), transparent);
+}
+.cta-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--ouro);
+  margin-bottom: 0.5rem;
+}
+.cta-titulo {
+  font-size: 1.15rem; font-weight: 400;
+  color: var(--branco); line-height: 1.35;
+  margin-bottom: 0.35rem;
+}
+.cta-titulo strong { color: var(--ouro-claro); font-weight: 600; }
+.cta-preco {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem; color: var(--ouro);
+  margin-bottom: 0.75rem;
+}
+.cta-desc {
+  font-size: 0.875rem; color: rgba(255,255,255,0.6);
+  font-style: italic; line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--ouro-claro), var(--ouro));
+  color: var(--verde);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 13px 32px; text-decoration: none;
+  transition: opacity 0.2s, transform 0.1s;
+  border: none; cursor: pointer;
+}
+.cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* Assinatura */
+.assinatura {
+  text-align: center; padding: 2rem 0 1rem;
+  border-top: 1px solid var(--creme-mid);
+  margin-top: 3rem;
+}
+.assinatura p {
+  font-size: 0.78rem; color: var(--texto-soft);
+  font-style: italic; line-height: 1.7;
+}
+.assinatura a { color: var(--verde); text-decoration: none; }
+
+@media (max-width: 480px) {
+  .header { margin: 0 -1.5rem; padding: 2.25rem 1.5rem 2rem; }
+  .res-header, .res-corpo, .cta { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Método VIDA · Ivan Vianna CFP® · Gratuito</div>
+    <h1 class="header-titulo">
+      O maior risco do seu patrimônio
+      <strong>não está no mercado. Está em você.</strong>
+    </h1>
+    <p class="header-sub">7 perguntas para identificar o padrão comportamental que está operando nas suas decisões financeiras — mesmo quando você sabe o que deveria fazer.</p>
+    <div class="header-tags">
+      <span class="header-tag">Executivos</span>
+      <span class="header-tag">Médicos</span>
+      <span class="header-tag">Empresários</span>
+      <span class="header-tag">Advogados</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-alerta">
+      <p>Pesquisas em behavioral finance mostram que padrões comportamentais respondem por mais de 60% da diferença de resultado entre investidores com o mesmo perfil de risco e o mesmo portfólio. A diferença não é técnica — é comportamental.</p>
+    </div>
+    <p>Este é o primeiro passo do <strong>Diagnóstico VIDA de Comportamento Patrimonial.</strong></p>
+  </div>
+
+  <!-- PROGRESSO -->
+  <div class="progresso" id="progressoWrap">
+    <div class="progresso-track">
+      <div class="progresso-fill" id="progressoFill"></div>
+    </div>
+    <div class="progresso-label" id="progressoLabel">0 de 7 respondidas</div>
+  </div>
+
+  <!-- PERGUNTAS -->
+  <div id="perguntasWrap">
+
+    <div class="pergunta" data-q="1">
+      <div class="p-numero">01</div>
+      <p class="p-texto">Quando uma decisão financeira importante fica pendente, o que costuma acontecer?</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,1)"><span class="opcao-letra">A</span>Decido com as informações disponíveis. Decisão boa agora vale mais que decisão perfeita tarde.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,1)"><span class="opcao-letra">B</span>Busco mais dados, mas ajo dentro de um prazo razoável.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,1)"><span class="opcao-letra">C</span>Fico em dúvida por mais tempo do que deveria.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,1)"><span class="opcao-letra">D</span>A decisão fica pendente até que algo externo me force a agir.</button>
+      </div>
+    </div>
+
+    <div class="pergunta" data-q="2">
+      <div class="p-numero">02</div>
+      <p class="p-texto">Quando seu patrimônio ou renda cai de forma expressiva, como isso afeta você?</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,2)"><span class="opcao-letra">A</span>Me incomoda, mas não abala quem eu sou. Separo patrimônio de identidade.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,2)"><span class="opcao-letra">B</span>Afeta minha confiança, mas me recupero com relativa rapidez.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,2)"><span class="opcao-letra">C</span>Afeta bastante. É difícil separar o resultado financeiro de como me sinto.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,2)"><span class="opcao-letra">D</span>É muito difícil. Uma queda expressiva compromete meu senso de segurança e identidade.</button>
+      </div>
+    </div>
+
+    <div class="pergunta" data-q="3">
+      <div class="p-numero">03</div>
+      <p class="p-texto">Quando sua renda aumenta, o que acontece com seus gastos nos meses seguintes?</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,3)"><span class="opcao-letra">A</span>Praticamente nada. Renda maior vai para investimentos, não para padrão de vida.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,3)"><span class="opcao-letra">B</span>Algum ajuste, mas não automático. Penso antes de expandir.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,3)"><span class="opcao-letra">C</span>O padrão sobe junto. É difícil resistir.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,3)"><span class="opcao-letra">D</span>O padrão sobe — e depois é muito difícil reduzir quando a renda oscila.</button>
+      </div>
+    </div>
+
+    <div class="pergunta" data-q="4">
+      <div class="p-numero">04</div>
+      <p class="p-texto">Com que frequência você toma decisões financeiras que, semanas depois, reconhece que contrariaram o que planejava?</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,4)"><span class="opcao-letra">A</span>Raramente. Há boa consistência entre o que planejo e o que faço.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,4)"><span class="opcao-letra">B</span>Às vezes. Alguns desvios, mas a direção geral se mantém.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,4)"><span class="opcao-letra">C</span>Com frequência. Sei o que deveria fazer — e frequentemente faço diferente.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,4)"><span class="opcao-letra">D</span>É um padrão recorrente. A distância entre intenção e ação é grande.</button>
+      </div>
+    </div>
+
+    <div class="pergunta" data-q="5">
+      <div class="p-numero">05</div>
+      <p class="p-texto">Quando você atinge uma meta financeira importante, o que costuma acontecer depois?</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,5)"><span class="opcao-letra">A</span>Consolido a conquista e avanço para a próxima meta.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,5)"><span class="opcao-letra">B</span>Celebro e continuo o plano.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,5)"><span class="opcao-letra">C</span>Rapidamente volto a me preocupar com o que ainda falta.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,5)"><span class="opcao-letra">D</span>Frequentemente perco parte do que construí por decisões impulsivas ou mal planejadas.</button>
+      </div>
+    </div>
+
+    <div class="pergunta" data-q="6">
+      <div class="p-numero">06</div>
+      <p class="p-texto">Hoje, suas decisões financeiras são tomadas principalmente:</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,6)"><span class="opcao-letra">A</span>Com base em objetivos claros e previamente definidos.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,6)"><span class="opcao-letra">B</span>Com base em objetivos que existem, mas ainda precisam de maior estrutura.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,6)"><span class="opcao-letra">C</span>Mais pelas circunstâncias do momento do que por um plano definido.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,6)"><span class="opcao-letra">D</span>Reagindo às demandas e urgências que surgem ao longo do caminho.</button>
+      </div>
+    </div>
+
+    <div class="pergunta" data-q="7">
+      <div class="p-numero">07</div>
+      <p class="p-texto">Qual destas frases descreve melhor sua situação financeira hoje?</p>
+      <div class="opcoes">
+        <button class="opcao" data-valor="3" onclick="sel(this,7)"><span class="opcao-letra">A</span>Meu patrimônio trabalha de forma organizada para meus objetivos.</button>
+        <button class="opcao" data-valor="2" onclick="sel(this,7)"><span class="opcao-letra">B</span>Está razoavelmente organizado, mas há ajustes importantes a fazer.</button>
+        <button class="opcao" data-valor="1" onclick="sel(this,7)"><span class="opcao-letra">C</span>Tenho a sensação de que poderia estar muito melhor do que estou hoje.</button>
+        <button class="opcao" data-valor="0" onclick="sel(this,7)"><span class="opcao-letra">D</span>Frequentemente sinto que estou deixando dinheiro, oportunidades ou segurança na mesa.</button>
+      </div>
+    </div>
+
+    <button class="btn-avancar" id="btnAvancar" onclick="mostrarCaptura()" disabled>
+      Ver meu perfil comportamental →
+    </button>
+    <p class="btn-nota" id="btnNota">Responda todas as perguntas para continuar</p>
+
+  </div>
+
+  <!-- CAPTURA -->
+  <div class="captura" id="capturaWrap">
+    <div class="captura-card">
+      <div class="captura-titulo">Seu perfil está pronto.</div>
+      <p class="captura-sub">Preencha os dados abaixo para liberar o seu Índice VIDA de Comportamento Patrimonial.</p>
+      <div class="campo">
+        <label class="campo-label">Nome</label>
+        <input type="text" class="campo-input" id="capNome" placeholder="Seu nome">
+        <div class="campo-erro" id="erroNome">Nome inválido — mínimo 3 letras.</div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">E-mail</label>
+        <input type="email" class="campo-input" id="capEmail" placeholder="seu@email.com">
+        <div class="campo-erro" id="erroEmail">E-mail inválido.</div>
+      </div>
+      <div class="campo">
+        <label class="campo-label">WhatsApp</label>
+        <input type="tel" class="campo-input" id="capWhatsapp" placeholder="(11) 99999-9999">
+        <div class="campo-erro" id="erroWhatsapp">WhatsApp inválido — mínimo 10 dígitos.</div>
+      </div>
+      <button class="btn-ver" onclick="mostrarResultado()">Ver meu Índice VIDA →</button>
+      <p class="privacidade">Seus dados não são compartilhados com terceiros.</p>
+    </div>
+  </div>
+
+  <!-- RESULTADO -->
+  <div class="resultado" id="resultado">
+
+    <!-- Escala visual -->
+    <div class="escala">
+      <div class="escala-titulo">Índice VIDA de Comportamento Patrimonial</div>
+      <div class="escala-itens" id="escalaItens">
+        <div class="escala-item" data-perfil="Arquiteto">
+          <div class="escala-dot"></div>
+          <span>Arquiteto</span>
+          <span class="escala-seta">← seu perfil</span>
+        </div>
+        <div class="escala-item" data-perfil="Oscilante">
+          <div class="escala-dot"></div>
+          <span>Oscilante</span>
+          <span class="escala-seta">← seu perfil</span>
+        </div>
+        <div class="escala-item" data-perfil="Reativo">
+          <div class="escala-dot"></div>
+          <span>Reativo</span>
+          <span class="escala-seta">← seu perfil</span>
+        </div>
+        <div class="escala-item" data-perfil="Refém">
+          <div class="escala-dot"></div>
+          <span>Refém</span>
+          <span class="escala-seta">← seu perfil</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="res-header">
+      <div class="res-eyebrow">Índice VIDA · resultado</div>
+      <div class="res-perfil" id="resPerfilTitulo"></div>
+      <p class="res-tagline" id="resTagline"></p>
+      <div class="res-barra-wrap">
+        <div class="res-barra-track">
+          <div class="res-barra-fill" id="resBarra"></div>
+        </div>
+        <div class="res-barra-label" id="resBarraLabel"></div>
+      </div>
+    </div>
+
+    <!-- Corpo -->
+    <div class="res-corpo" id="resCorpo"></div>
+
+  </div>
+
+  <!-- ASSINATURA -->
+  <div class="assinatura">
+    <p>Ivan Vianna · CFP® · CNPJ 56.099.913/0001-61<br>
+    <a href="https://patrimonioglobal.com.br">patrimonioglobal.com.br</a> · <a href="https://www.linkedin.com/in/ivanlvianna/">linkedin.com/in/ivanlvianna</a></p>
+  </div>
+
+</div>
+
+<script>
+// ── DADOS ──────────────────────────────────────────────────────────────────
+const TOTAL = 7;
+const respostas = {};
+
+const HOTMART = 'https://ivanlvianna.kpages.online/diagnostico-vida-de-comportamento-patrimonial-9c9e4bb5-d9a5-430a-9767-e4b3349e5d9c';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzsVpO_OoWVjENJyDP2MCY-wGNqSnuz1oc6txaATRksQNRJCwrOaJaKlGzv2bQQI0I/exec';
+
+const perfis = {
+  Arquiteto: {
+    range: [18, 21],
+    tagline: 'Seus padrões comportamentais raramente trabalham contra você.',
+    textos: [
+      'Você desenvolveu algo raro: consistência entre intenção e ação financeira. Você decide com clareza, mantém o plano sob pressão e não confunde patrimônio com identidade. Isso coloca você em uma minoria — a maioria das pessoas com renda e conhecimento equivalentes entrega resultados significativamente menores por razões que não estão no mercado.',
+      'Seu principal desafio não é disciplina financeira. É transformar uma boa estrutura em uma estrutura excepcional. Muitas vezes o ganho não está em investir melhor — está em organizar melhor.',
+      'Há um padrão específico por trás desse resultado. O Diagnóstico VIDA foi criado para identificar exatamente qual é ele.'
+    ],
+    ctaTitulo: 'Diagnóstico VIDA de <strong>Comportamento Patrimonial</strong>',
+    ctaDesc: 'Para quem já tem uma base sólida: o diagnóstico completo revela onde a próxima camada de resultado está — e o que está silenciosamente bloqueando ela.',
+    barraLabel: 'Índice de consistência comportamental'
+  },
+  Oscilante: {
+    range: [12, 17],
+    tagline: 'Você sabe o que deveria fazer. Nem sempre faz.',
+    textos: [
+      'Há clareza intelectual no seu perfil — você entende os princípios, reconhece os erros, tem boas intenções. O problema é que padrões comportamentais ativos interferem na execução. Decisões adiadas, gastos que sobem com a renda, distância entre planejado e realizado.',
+      'O custo disso não aparece no extrato de um mês. Aparece na comparação entre o patrimônio que você tem e o que teria se os últimos cinco anos tivessem sido mais consistentes.',
+      'Há um padrão específico por trás desse resultado. O Diagnóstico VIDA foi criado para identificar exatamente qual é ele.'
+    ],
+    ctaTitulo: 'Diagnóstico VIDA de <strong>Comportamento Patrimonial</strong>',
+    ctaDesc: 'O diagnóstico identifica quais padrões específicos estão operando no seu caso — e onde estão custando mais.',
+    barraLabel: 'Índice de consistência comportamental'
+  },
+  Reativo: {
+    range: [6, 11],
+    tagline: 'Parte relevante das suas decisões é movida por pressão, não por estratégia.',
+    textos: [
+      'Você age quando algo externo força a ação. O padrão de gastos acompanha a renda. A distância entre intenção e execução é frequente. Isso não é falta de inteligência — é o padrão mais comum em pessoas de alta performance que nunca tiveram espaço para estruturar a dimensão comportamental das suas finanças.',
+      'O custo acumulado de um perfil Reativo ao longo de uma década é concreto: decisões tomadas sob pressão emocional, oportunidades perdidas por paralisia, patrimônio que cresce menos do que a renda permitiria.',
+      'Há um padrão específico por trás desse resultado. O Diagnóstico VIDA foi criado para identificar exatamente qual é ele.'
+    ],
+    ctaTitulo: 'Diagnóstico VIDA de <strong>Comportamento Patrimonial</strong>',
+    ctaDesc: 'O diagnóstico foi desenhado exatamente para esse momento — antes que o custo acumulado fique maior.',
+    barraLabel: 'Índice de consistência comportamental'
+  },
+  Refém: {
+    range: [0, 5],
+    tagline: 'Seu maior risco patrimonial não está no mercado.',
+    textos: [
+      'Seu maior risco patrimonial não está no mercado. Está no padrão de decisões que vem se repetindo ao longo do tempo.',
+      'Múltiplos padrões comportamentais estão ativos — e provavelmente já custaram decisões melhores do que você percebe. Identidade atrelada ao patrimônio, gastos que expandem automaticamente, dificuldade de manter conquistas, sensação persistente de que algo está fora de controle.',
+      'Isso não é fraqueza. É o perfil mais frequente entre pessoas de alta renda que nunca receberam um mapa comportamental do próprio patrimônio. O custo de continuar sem esse mapa cresce a cada ano.',
+      'Há um padrão específico por trás desse resultado. O Diagnóstico VIDA foi criado para identificar exatamente qual é ele.'
+    ],
+    ctaTitulo: '<strong>Diagnóstico urgente:</strong> o padrão comportamental é o maior risco do seu patrimônio',
+    ctaDesc: 'O diagnóstico revela onde esses padrões estão operando — e como neutralizá-los no contexto do seu patrimônio real.',
+    barraLabel: 'Índice de consistência comportamental'
+  }
+};
+
+// ── LÓGICA ──────────────────────────────────────────────────────────────────
+function sel(btn, q) {
+  btn.closest('.pergunta').querySelectorAll('.opcao').forEach(o => o.classList.remove('selecionada'));
+  btn.classList.add('selecionada');
+  respostas[q] = parseInt(btn.dataset.valor);
+  btn.closest('.pergunta').classList.add('respondida');
+
+  const n = Object.keys(respostas).length;
+  document.getElementById('progressoFill').style.width = (n / TOTAL * 100) + '%';
+  document.getElementById('progressoLabel').textContent = n + ' de ' + TOTAL + ' respondidas';
+
+  if (n === TOTAL) {
+    document.getElementById('btnAvancar').disabled = false;
+    document.getElementById('btnNota').style.display = 'none';
+  }
+}
+
+function validar(id, erroId, fn) {
+  const val = document.getElementById(id).value.trim();
+  const ok = fn(val);
+  document.getElementById(id).classList.toggle('erro', !ok);
+  document.getElementById(erroId).classList.toggle('visivel', !ok);
+  return ok;
+}
+
+function mostrarCaptura() {
+  document.getElementById('perguntasWrap').style.display = 'none';
+  document.getElementById('progressoWrap').style.display = 'none';
+  const cap = document.getElementById('capturaWrap');
+  cap.style.display = 'block';
+  cap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function calcularPerfil(total) {
+  if (total >= 18) return 'Arquiteto';
+  if (total >= 12) return 'Oscilante';
+  if (total >= 6)  return 'Reativo';
+  return 'Refém';
+}
+
+function mostrarResultado() {
+  const v1 = validar('capNome',     'erroNome',     v => /^[a-zA-ZÀ-ÿ\s]{3,}$/.test(v));
+  const v2 = validar('capEmail',    'erroEmail',    v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+  const wpp = document.getElementById('capWhatsapp').value.replace(/\D/g, '');
+  const v3 = validar('capWhatsapp', 'erroWhatsapp', () => wpp.length >= 10);
+  if (!v1 || !v2 || !v3) return;
+
+  const nome     = document.getElementById('capNome').value.trim();
+  const email    = document.getElementById('capEmail').value.trim();
+  const whatsapp = document.getElementById('capWhatsapp').value.trim();
+  const total    = Object.values(respostas).reduce((a, b) => a + b, 0);
+  const pct      = Math.round((total / (TOTAL * 3)) * 100);
+  const perfilKey = calcularPerfil(total);
+  const perfil    = perfis[perfilKey];
+  const primeiroNome = nome.split(' ')[0];
+
+  // Gravar no Sheets
+  gravarLead(nome, email, whatsapp, perfilKey, pct);
+
+  // Escala visual
+  document.querySelectorAll('.escala-item').forEach(el => {
+    el.classList.toggle('ativo', el.dataset.perfil === perfilKey);
+  });
+
+  // Header
+  document.getElementById('resPerfilTitulo').innerHTML =
+    primeiroNome + ' — perfil <strong>' + perfilKey + '</strong>';
+  document.getElementById('resTagline').textContent = perfil.tagline;
+
+  setTimeout(() => {
+    document.getElementById('resBarra').style.width = pct + '%';
+    document.getElementById('resBarraLabel').textContent =
+      perfil.barraLabel + ': ' + pct + '/100';
+  }, 300);
+
+  // Corpo
+  const corpo = document.getElementById('resCorpo');
+  corpo.innerHTML = `
+    <div class="res-secao">Leitura do seu perfil</div>
+    ${perfil.textos.map(t => `<p class="res-texto">${t}</p>`).join('')}
+    <div class="cta">
+      <div class="cta-label">Próximo passo · Diagnóstico integrado</div>
+      <div class="cta-titulo">${perfil.ctaTitulo}</div>
+      <div class="cta-preco">Diagnóstico VIDA de Comportamento Patrimonial · sessão individual</div>
+      <p class="cta-desc">${perfil.ctaDesc}</p>
+      <a href="${HOTMART}" class="cta-btn" target="_blank" rel="noopener">
+        Quero o diagnóstico completo →
+      </a>
+    </div>
+  `;
+
+  // Mostrar resultado
+  document.getElementById('capturaWrap').style.display = 'none';
+  const res = document.getElementById('resultado');
+  res.classList.add('visivel');
+  res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── GOOGLE SHEETS ────────────────────────────────────────────────────────────
+function gravarLead(nome, email, whatsapp, perfil, pontuacao) {
+  const dados = {
+    produto:   'Índice VIDA',
+    nome:      nome,
+    whatsapp:  whatsapp,
+    dado1:     email,
+    dado2:     perfil,
+    dado3:     pontuacao + '%'
+  };
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(dados)
+  }).catch(() => {}); // silencia erros de rede
+}
+
+// ── ANIMAÇÃO INICIAL ──────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.pergunta').forEach((b, i) => {
+    setTimeout(() => b.classList.add('visivel'), 80 * i + 100);
+  });
+});
+</script>
+</body>
+</html>
